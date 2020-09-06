@@ -1,7 +1,18 @@
 ## TODO
 
 1. Send messsages in batch
+
+https://github.com/segmentio/analytics-ruby/blob/master/lib/segment/analytics/message_batch.rb
+
 2. worker to consume messages
+
+https://github.com/segmentio/analytics-ruby/blob/master/lib/segment/analytics/worker.rb
+
+3. rake task to create the table in dynamo db.
+
+  - define schema
+  - sidekiq middleware
+
 
 # Dynamo Audits
 
