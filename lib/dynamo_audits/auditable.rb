@@ -61,8 +61,7 @@ module DynamoAudits
         item: item
       }
 
-      # Ryan's TODO: use client.batch_write_item in future.
-      DynamoAudits.configuration.client.put_item(params)
+      DynamoAudits::AuditJob.perform(params)
     rescue => e
       DynamoAudits.configuration.logger.error e.inspect
       DynamoAudits.configuration.logger.error options

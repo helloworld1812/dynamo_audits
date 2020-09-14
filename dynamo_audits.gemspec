@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   # Runtime dependency
   spec.add_runtime_dependency 'activerecord', '>= 4.2'
   spec.add_runtime_dependency 'activesupport'
+  spec.add_runtime_dependency 'rails'
 
   # Development dependency
   spec.add_development_dependency "bundler", ">= 1.17"
