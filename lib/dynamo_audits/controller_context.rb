@@ -3,8 +3,8 @@ module DynamoAudits
     def around(controller)
       if controller.present?
         DynamoAudits.purge_store!
-        DynamoAudits.store[:current_user] = controller.current_user if controller.respond_to?(:current_user)
-        DynamoAudits.store[:current_company] = controller.current_company if controller.respond_to?(:current_company)
+        DynamoAudits.store[:current_user] = controller.instance_variable_get(:@current_user) if controller.instance_variable_get(:@current_user)
+        DynamoAudits.store[:current_company] = controller.instance_variable_get(:@current_company)  if controller.instance_variable_get(:@current_company)
         DynamoAudits.store[:request_uuid] = controller.request.uuid
         DynamoAudits.store[:remote_ip] = controller.request.remote_ip
         DynamoAudits.store[:current_controller] = controller
