@@ -12,7 +12,7 @@ module DynamoAudits
       yield
     ensure
       # reset the thread local variable.
-      ActiveRecordSegment.purge_store!
+      DynamoAudits.purge_store!
     end
   end
 end
