@@ -9,12 +9,12 @@ module DynamoAudits
   DEFAULT_IGNORED_ATTRIBUTES = %w(updated_at created_at)
 
   class Configuration
-    attr_accessor :dynamodb_table, :env, :enabled, :logger, :ignored_attributes, :ignored_klasses, :region
+    attr_accessor :dynamodb_table, :env, :enabled, :logger, :ignored_attributes, :ignored_tables, :region
 
     def initialize
      # Set default value if user forget to configure 
       self.ignored_attributes = DEFAULT_IGNORED_ATTRIBUTES
-      self.ignored_klasses = []
+      self.ignored_tables = []
       self.enabled = false
       self.env = defined?(Rails) && Rails.env.to_s
       self.logger = Logger.new(STDOUT)

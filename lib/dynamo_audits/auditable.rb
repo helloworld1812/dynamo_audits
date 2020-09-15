@@ -11,7 +11,7 @@ module DynamoAudits
     private
 
     def dynamo_auditing_enabled?
-      return false if DynamoAudits.configuration.ignored_klasses.include?(self.class)
+      return false if DynamoAudits.configuration.ignored_tables.include?(self.class.table_name)
       return false if !DynamoAudits.configuration.enabled
       return true
     end
