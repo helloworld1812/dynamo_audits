@@ -1,19 +1,3 @@
-## TODO
-
-1. Send messsages in batch
-
-https://github.com/segmentio/analytics-ruby/blob/master/lib/segment/analytics/message_batch.rb
-
-2. worker to consume messages
-
-https://github.com/segmentio/analytics-ruby/blob/master/lib/segment/analytics/worker.rb
-
-3. rake task to create the table in dynamo db.
-
-  - define schema
-  - sidekiq middleware
-
-
 # Dynamo Audits
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dynamo_audits`. To experiment with that code, run `bin/console` for an interactive prompt.
