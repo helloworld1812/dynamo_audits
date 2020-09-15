@@ -2,12 +2,11 @@ require 'active_record'
 require 'active_support'
 require "dynamo_audits/version"
 require 'dynamo_audits/auditable'
+require 'dynamo_audits/audit_job'
 require 'dynamo_audits/controller_context'
 
 module DynamoAudits
-
-
-  DEFAULT_IGNORED_ATTRIBUTES = %w(updated_at created_at deleted_at)
+  DEFAULT_IGNORED_ATTRIBUTES = %w(updated_at created_at)
 
   class Configuration
     attr_accessor :dynamodb_table, :env, :enabled, :logger, :ignored_attributes, :ignored_klasses, :region

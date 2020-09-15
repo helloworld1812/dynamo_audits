@@ -48,6 +48,7 @@ module DynamoAudits
         action: options[:action],
         table_name: self.class.table_name,
         table_id: self.id,
+        table_name_and_id: "#{self.class.table_name}-#{self.id}",
         audited_changes: options[:audited_changes].to_json,
         request_uuid: DynamoAudits.store[:request_uuid],
         env: DynamoAudits.configuration.env
