@@ -11,8 +11,8 @@ module DynamoAudits
     private
 
     def dynamo_auditing_enabled?
-      return false if DynamoAudits.configuration.ignored_tables.include?(self.class.table_name)
       return false if !DynamoAudits.configuration.enabled
+      return false if DynamoAudits.configuration.ignored_tables.include?(self.class.table_name)
       return true
     end
 
@@ -62,10 +62,7 @@ module DynamoAudits
         item: item
       }
 
-      DynamoAudits::AuditJob.perform(params)
-    rescue => e
-      DynamoAudits.configuration.logger.error e.inspect
-      DynamoAudits.configuration.logger.error options
+      DynamoAudits::AuditJob.perform_later(params)
     end
 
     def ___audited_changes___

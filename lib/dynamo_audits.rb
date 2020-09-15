@@ -1,5 +1,6 @@
 require 'active_record'
 require 'active_support'
+require 'active_job'
 require "dynamo_audits/version"
 require 'dynamo_audits/auditable'
 require 'dynamo_audits/audit_job'
@@ -12,14 +13,21 @@ module DynamoAudits
     attr_accessor :dynamodb_table, :env, :enabled, :logger, :ignored_attributes, :ignored_tables, :region
 
     def initialize
-     # Set default value if user forget to configure 
+      # Set default value if user forget to configure
       self.ignored_attributes = DEFAULT_IGNORED_ATTRIBUTES
       self.ignored_tables = []
       self.enabled = false
-      self.env = defined?(Rails) && Rails.env.to_s
-      self.logger = Logger.new(STDOUT)
-      self.dynamodb_table = 'audit_logs_' + self.env
       self.region = 'us-west-2'
+
+      if defined?(Rails)
+        self.env = Rails.env.to_s
+        self.logger = Rails.logger
+        self.dynamodb_table = 'audit_logs_' + Rails.env.to_s
+      else
+        self.env = 'development'
+        self.logger = Logger.new(STDOUT)
+        self.dynamodb_table = 'audit_logs_development'
+      end
     end
 
     def client
