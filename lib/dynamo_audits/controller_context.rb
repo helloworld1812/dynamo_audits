@@ -1,8 +1,8 @@
 module DynamoAudits
   class ControllerContext
     def around(controller)
-      dup = controller.deep_dup
       if controller.present?
+        dup = controller.deep_dup
         DynamoAudits.purge_store!
         DynamoAudits.store[:current_user] =  dup.current_user if dup.respond_to?(:current_user)
         DynamoAudits.store[:current_company] = dup.current_company if dup.respond_to?(:current_company)
