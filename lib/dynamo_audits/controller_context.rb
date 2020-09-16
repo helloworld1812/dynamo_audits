@@ -1,12 +1,13 @@
 module DynamoAudits
   class ControllerContext
     def around(controller)
+      dup = controller.deep_dup
       if controller.present?
         DynamoAudits.purge_store!
-        DynamoAudits.store[:current_user] = controller.instance_variable_get(:@current_user) if controller.instance_variable_get(:@current_user)
-        DynamoAudits.store[:current_company] = controller.instance_variable_get(:@current_company)  if controller.instance_variable_get(:@current_company)
-        DynamoAudits.store[:request_uuid] = controller.request.uuid
-        DynamoAudits.store[:remote_ip] = controller.request.remote_ip
+        DynamoAudits.store[:current_user] =  dup.current_user if dup.respond_to?(:current_user)
+        DynamoAudits.store[:current_company] = dup.current_company if dup.respond_to?(:current_company)
+        DynamoAudits.store[:request_uuid] = dup.request.uuid
+        DynamoAudits.store[:remote_ip] = dup.request.remote_ip
         DynamoAudits.store[:current_controller] = controller
       end
       yield

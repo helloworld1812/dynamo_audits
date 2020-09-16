@@ -55,7 +55,7 @@ module DynamoAudits
       }
 
       item.merge!(company_id: company.id) if company.present?
-      item.merge!(company_id: user.id) if user.present?
+      item.merge!(user_id: user.id) if user.present?
 
       params = {
         table_name: DynamoAudits.configuration.dynamodb_table,
