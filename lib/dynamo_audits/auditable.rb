@@ -63,7 +63,7 @@ module DynamoAudits
       }
 
       # flatten the write spike
-      DynamoAudits::AuditJob.set(wait: rand(5.minutes)).perform_later(params)
+      DynamoAudits::AuditJob.set(wait: rand(30.minutes)).perform_later(params)
     end
 
     def ___audited_changes___
